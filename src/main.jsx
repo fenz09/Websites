@@ -99,7 +99,7 @@ function ConsultationModal({ open, onClose }) {
             <label className="form-wide">What would you like to discuss?<textarea name="reason" required placeholder="Tell us what you need help with..." /></label>
           </div>
           {error && <p className="form-error" role="alert">{error}</p>}
-          <Button type="submit" disabled={submitting}>{submitting ? "Sending request..." : <>Book consultation <Arrow /></>}</Button>
+          <Button type="submit" disabled={submitting}>{submitting ? "Sending request..." : <>Get in touch <Arrow /></>}</Button>
         </form>
       </>}
     </div>
@@ -125,7 +125,7 @@ function App() {
           <a href="#reviews" onClick={() => setMenuOpen(false)}>Reviews</a>
           <a href="#contact" onClick={() => setMenuOpen(false)}>Contact</a>
         </div>
-        <Button onClick={openConsultation}>Book a consultation <Arrow /></Button>
+        <Button onClick={openConsultation}>Get in touch <Arrow /></Button>
         <button className="menu-toggle" type="button" aria-label="Toggle menu" onClick={() => setMenuOpen((isOpen) => !isOpen)}><span className="menu-icon" aria-hidden="true" /></button>
       </nav>
     </header>
@@ -137,7 +137,7 @@ function App() {
           <p className="kicker">Independent automotive specialists <span className="pulse-dot" /></p>
           <h1>Cars with<br /><em>character.</em></h1>
           <p className="hero-copy">From finding your next car to keeping it at its best, we bring care, clarity and serious automotive knowledge to every mile, ensuring customer satisfaction.</p>
-          <div className="hero-actions"><Button onClick={openConsultation}>Book a consultation <Arrow /></Button><a className="text-link" href="#services">Explore services <Arrow /></a></div>
+          <div className="hero-actions"><Button onClick={openConsultation}>Get in touch <Arrow /></Button><a className="text-link" href="#services">Explore services <Arrow /></a></div>
           <div className="hero-stats"><div><strong>5<span>+</span></strong><small>Years in the trade</small></div><div><strong>4.7<span>/5</span></strong><small>Client satisfaction</small></div><div><strong>1 <span>on 1</span></strong><small>Personal service</small></div></div>
         </div>
         <div className="hero-tag">BMW / 4 SERIES <span>01 — 04</span></div>
@@ -155,10 +155,12 @@ function App() {
 
       <section className="reviews section" id="reviews"><div className="shell"><div className="section-intro"><div><p className="kicker">03 / Client words</p><h2>Trust is part<br />of <em>the service.</em></h2></div><p>Our reputation is built one honest conversation and one well-kept car at a time.</p></div><div className="review-grid">{reviews.map((review) => <article className="review-card" key={review.name}><div className="stars" aria-label="5 out of 5 stars"><span /><span /><span /><span /><span /></div><blockquote>“{review.quote}”</blockquote><strong>{review.name}</strong><small>{review.type}</small></article>)}</div></div></section>
 
-      <section className="cta"><div className="shell cta-inner"><div><p className="kicker">04 / Start a conversation</p><h2>Not sure<br /><em>where to start?</em></h2></div><div><p>Bring us your questions, your shortlist or simply the idea of a better car experience. We&apos;ll take it from there.</p><Button onClick={openConsultation}>Book a consultation <Arrow /></Button></div></div></section>
+      <section className="cta"><div className="shell cta-inner"><div><p className="kicker">04 / Start a conversation</p><h2>Not sure<br /><em>where to start?</em></h2></div><div><p>Bring us your questions, your shortlist or simply the idea of a better car experience. We&apos;ll take it from there.</p><Button onClick={openConsultation}>Get in touch <Arrow /></Button></div></div></section>
 
       <section className="contact section shell" id="contact"><div className="contact-grid"><div><span>Call us</span><strong>020 7946 0821</strong></div><div><span>Email</span><strong>hello@apexmotoring.co.uk</strong></div><a className="instagram-link" href="https://www.instagram.com/cflipzd15/?hl=en" target="_blank" rel="noreferrer"><span>Instagram</span><strong>@cflipzd15</strong></a></div><footer><span>© 2024 Apex Motoring</span><span>Made for the road ahead.</span></footer></section>
     </main>
+    <span className="watermark" aria-hidden="true">AP &amp; Sons Digital Solutions</span>
+    <button className="back-to-top" type="button" onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}>Back to top</button>
     <ConsultationModal open={modalOpen} onClose={() => setModalOpen(false)} />
   </>;
 }
