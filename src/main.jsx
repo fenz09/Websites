@@ -7,16 +7,17 @@ import img2 from "../img2.PNG";
 import image3 from "../image3.png";
 import image4 from "../image 4.PNG";
 import image5 from "../image5.PNG";
+import image7 from "../image 7.jpg";
 
 const EMAILJS_SERVICE_ID = "service_fs72dps";
 const EMAILJS_TEMPLATE_ID = "template_kgtja1m";
 const EMAILJS_PUBLIC_KEY = "rHjsKLtcNSoyW02Si";
 
 const services = [
-  { id: "01", title: "Car Sales", text: "Hand-picked cars, prepared properly and ready for the next chapter.", mark: "↗" },
-  { id: "02", title: "Car Sourcing", text: "Your brief, our network. We find the right car without the usual noise.", mark: "⌕" },
-  { id: "03", title: "Car Imports", text: "A smooth route from overseas discovery to your driveway.", mark: "↙" },
-  { id: "04", title: "Mechanic & Servicing", text: "Straight answers, skilled hands, and care that keeps you moving.", mark: "✳" }
+  { id: "01", title: "Car Sales", text: "Hand-picked cars, prepared properly and ready for the next chapter.", mark: "SALE" },
+  { id: "02", title: "Car Sourcing", text: "Your brief, our network. We find the right car without the usual noise.", mark: "FIND" },
+  { id: "03", title: "Car Imports", text: "A smooth route from overseas discovery to your driveway.", mark: "IMPORT" },
+  { id: "04", title: "Mechanic & Servicing", text: "Straight answers, skilled hands, and care that keeps you moving.", mark: "CARE" }
 ];
 
 const reviews = [
@@ -34,11 +35,11 @@ const gallery = [
 ];
 
 function Arrow() {
-  return <span className="arrow" aria-hidden="true">↗</span>;
+  return <span className="action-mark" aria-hidden="true" />;
 }
 
 function Logo() {
-  return <a className="logo" href="#top" aria-label="Aldichan Autos home"><span className="logo-badge">A</span><span>ALDICHAN<span className="logo-accent">/</span>AUTOS</span></a>;
+  return <a className="logo" href="#top" aria-label="Aldachan Autos home"><span className="logo-badge">A</span><span>ALDACHAN<span className="logo-accent">/</span>AUTOS</span></a>;
 }
 
 function Button({ children, onClick, secondary = false, type = "button", disabled = false }) {
@@ -84,8 +85,8 @@ function ConsultationModal({ open, onClose }) {
 
   return <div className="modal-backdrop" onMouseDown={(event) => event.target === event.currentTarget && closeModal()}>
     <div className="modal" role="dialog" aria-modal="true" aria-labelledby="modal-title">
-      <button className="modal-close" type="button" onClick={closeModal} aria-label="Close consultation form">×</button>
-      {submitted ? <div className="success-state"><span className="success-mark">✓</span><p className="kicker">Request received</p><h2>We&apos;ll be in touch.</h2><p>Thanks for reaching out. Our team will review your details and get back to you shortly.</p><Button onClick={closeModal}>Back to the page <Arrow /></Button></div> : <>
+      <button className="modal-close" type="button" onClick={closeModal} aria-label="Close consultation form"><span aria-hidden="true" /></button>
+      {submitted ? <div className="success-state"><span className="success-mark" aria-hidden="true" /><p className="kicker">Request received</p><h2>We&apos;ll be in touch.</h2><p>Thanks for reaching out. Our team will review your details and get back to you shortly.</p><Button onClick={closeModal}>Back to the page <Arrow /></Button></div> : <>
         <p className="kicker">Private consultation</p>
         <h2 id="modal-title">Let&apos;s talk cars.</h2>
         <p className="modal-intro">Bring us your questions, your shortlist, or simply the idea of a better car experience.</p>
@@ -125,19 +126,19 @@ function App() {
           <a href="#contact" onClick={() => setMenuOpen(false)}>Contact</a>
         </div>
         <Button onClick={openConsultation}>Book a consultation <Arrow /></Button>
-        <button className="menu-toggle" type="button" aria-label="Toggle menu" onClick={() => setMenuOpen((isOpen) => !isOpen)}>{menuOpen ? "×" : "☰"}</button>
+        <button className="menu-toggle" type="button" aria-label="Toggle menu" onClick={() => setMenuOpen((isOpen) => !isOpen)}><span className="menu-icon" aria-hidden="true" /></button>
       </nav>
     </header>
 
     <main id="top">
       <section className="hero">
-        <div className="hero-image" />
+        <div className="hero-image" style={{ "--hero-image": `url(${image7})` }} />
         <div className="hero-content shell">
           <p className="kicker">Independent automotive specialists <span className="pulse-dot" /></p>
           <h1>Cars with<br /><em>character.</em></h1>
-          <p className="hero-copy">From finding your next car to keeping it at its best, we bring care, clarity and serious automotive knowledge to every mile.</p>
+          <p className="hero-copy">From finding your next car to keeping it at its best, we bring care, clarity and serious automotive knowledge to every mile, ensuring customer satisfaction.</p>
           <div className="hero-actions"><Button onClick={openConsultation}>Book a consultation <Arrow /></Button><a className="text-link" href="#services">Explore services <Arrow /></a></div>
-          <div className="hero-stats"><div><strong>15<span>+</span></strong><small>Years in the trade</small></div><div><strong>4.9<span>/5</span></strong><small>Client satisfaction</small></div><div><strong>1<span>:1</span></strong><small>Personal service</small></div></div>
+          <div className="hero-stats"><div><strong>5<span>+</span></strong><small>Years in the trade</small></div><div><strong>4.7<span>/5</span></strong><small>Client satisfaction</small></div><div><strong>1 <span>on 1</span></strong><small>Personal service</small></div></div>
         </div>
         <div className="hero-tag">BMW / 4 SERIES <span>01 — 04</span></div>
       </section>
@@ -152,7 +153,7 @@ function App() {
         <div className="gallery-grid">{gallery.map((item) => <figure className={`gallery-item ${item.className}`} key={item.id ?? item.label} style={{ backgroundImage: `url(${item.image})` }}><figcaption><span>{item.label}</span><Arrow /></figcaption></figure>)}</div>
       </section>
 
-      <section className="reviews section" id="reviews"><div className="shell"><div className="section-intro"><div><p className="kicker">03 / Client words</p><h2>Trust is part<br />of <em>the service.</em></h2></div><p>Our reputation is built one honest conversation and one well-kept car at a time.</p></div><div className="review-grid">{reviews.map((review) => <article className="review-card" key={review.name}><div className="stars">★★★★★</div><blockquote>“{review.quote}”</blockquote><strong>{review.name}</strong><small>{review.type}</small></article>)}</div></div></section>
+      <section className="reviews section" id="reviews"><div className="shell"><div className="section-intro"><div><p className="kicker">03 / Client words</p><h2>Trust is part<br />of <em>the service.</em></h2></div><p>Our reputation is built one honest conversation and one well-kept car at a time.</p></div><div className="review-grid">{reviews.map((review) => <article className="review-card" key={review.name}><div className="stars" aria-label="5 out of 5 stars"><span /><span /><span /><span /><span /></div><blockquote>“{review.quote}”</blockquote><strong>{review.name}</strong><small>{review.type}</small></article>)}</div></div></section>
 
       <section className="cta"><div className="shell cta-inner"><div><p className="kicker">04 / Start a conversation</p><h2>Not sure<br /><em>where to start?</em></h2></div><div><p>Bring us your questions, your shortlist or simply the idea of a better car experience. We&apos;ll take it from there.</p><Button onClick={openConsultation}>Book a consultation <Arrow /></Button></div></div></section>
 
